@@ -1,0 +1,20 @@
+Multi-Dataset Analytics OJET Implementation Notes
+
+Updated files:
+- src/js/appController.js: Replaced the starter navdrawer routes with Upload, Dashboard, Dataset 1, Dataset 2, Dataset 3, and Comparison routes. Also updated the app title, user label, and footer links for the analytics app.
+- src/index.html: Added a reusable Knockout template for dataset analysis pages so all three dataset routes share one UI structure.
+- src/js/viewModels/dashboard.js and src/js/views/dashboard.html: Replaced starter dashboard content with generated dataset cards, row/column/numeric summaries, insights, and an OJET bar chart.
+- src/css/app.css: Added responsive analytics layout styles, cards, table sizing, chart panels, upload states, and the CSS-based 3D bar visualization.
+
+New files:
+- src/js/services/analyticsService.js: Central data-processing service for CSV parsing, uploaded dataset state, summary statistics, categorical counts, chart item builders, table column builders, and sample dataset loading.
+- src/js/viewModels/upload.js and src/js/views/upload.html: Landing upload page with three native CSV file inputs, validation messaging, sample-data loading, and dashboard navigation.
+- src/js/viewModels/datasetAnalysisFactory.js: Reusable dataset analysis view model used by Dataset 1, Dataset 2, and Dataset 3 pages.
+- src/js/viewModels/dataset1.js, src/js/viewModels/dataset2.js, src/js/viewModels/dataset3.js: Thin route-specific wrappers that instantiate the reusable analysis view model with the correct dataset index.
+- src/js/views/dataset1.html, src/js/views/dataset2.html, src/js/views/dataset3.html: Route views that render the shared dataset analysis template.
+- src/js/viewModels/comparison.js and src/js/views/comparison.html: Cross-dataset comparison page with side-by-side metrics, stacked OJET chart, comparative insights, and a 3D row-volume visualization.
+
+Notes:
+- The browser implementation supports CSV upload. The UI accepts the project flow for three datasets and validates the expected 10-column shape.
+- The sample-data button loads small built-in versions of customers, orders, and feedback data so the app can be demonstrated without manual file selection.
+- Uploaded datasets are stored in browser session storage so Dashboard, Dataset, and Comparison routes can read them after navigation.

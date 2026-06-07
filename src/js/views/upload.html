@@ -1,0 +1,49 @@
+<div class="analytics-page">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">Data intake</p>
+      <h2>Upload three analysis datasets</h2>
+      <p class="page-subtitle">Load CSV files with 10 columns each, then generate the dashboard and analysis pages.</p>
+    </div>
+    <div class="action-row">
+      <oj-button chroming="outlined" on-oj-action="[[loadSamples]]">
+        <span slot="startIcon" class="oj-ux-ico-data"></span>
+        Load samples
+      </oj-button>
+      <oj-button chroming="callToAction" disabled="[[!canContinue()]]" on-oj-action="[[continueToDashboard]]">
+        <span slot="startIcon" class="oj-ux-ico-arrow-right"></span>
+        Continue
+      </oj-button>
+    </div>
+  </div>
+
+  <oj-messages messages="[[messages]]"></oj-messages>
+
+  <div class="upload-grid">
+    <!-- ko foreach: slots -->
+      <section class="analytics-card upload-card">
+        <div class="upload-card-header">
+          <span class="card-icon oj-ux-ico-upload"></span>
+          <div>
+            <h3 data-bind="text: label"></h3>
+            <p>Choose a CSV file with 10 columns</p>
+          </div>
+        </div>
+        <label class="native-upload">
+          <span class="oj-ux-ico-upload"></span>
+          <strong>Select CSV file</strong>
+          <input type="file" accept=".csv,text/csv" data-bind="event: { change: $parent.selectFile.bind($parent, $index()) }">
+        </label>
+        <div class="upload-status" data-bind="css: $parent.datasets()[$index()].uploaded ? 'status-ready' : 'status-empty'">
+          <span data-bind="css: $parent.datasets()[$index()].uploaded ? 'oj-ux-ico-check-circle' : 'oj-ux-ico-clock'"></span>
+          <!-- ko if: $parent.datasets()[$index()].uploaded -->
+            <span><span data-bind="text: $parent.datasets()[$index()].fileName"></span> loaded</span>
+          <!-- /ko -->
+          <!-- ko ifnot: $parent.datasets()[$index()].uploaded -->
+            <span>Waiting for CSV file</span>
+          <!-- /ko -->
+        </div>
+      </section>
+    <!-- /ko -->
+  </div>
+</div>

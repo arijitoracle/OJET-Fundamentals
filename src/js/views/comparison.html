@@ -1,0 +1,75 @@
+<div class="analytics-page">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">Comparison</p>
+      <h2>Cross-dataset analysis</h2>
+      <p class="page-subtitle">Compare structure, scale, and derived metrics for all uploaded datasets.</p>
+    </div>
+    <oj-button chroming="outlined" on-oj-action="[[goUpload]]">
+      <span slot="startIcon" class="oj-ux-ico-upload"></span>
+      Replace files
+    </oj-button>
+  </div>
+
+  <oj-bind-if test="[[!hasData()]]">
+    <section class="empty-state">
+      <h3>No datasets loaded</h3>
+      <p>Upload or load samples before opening the comparison dashboard.</p>
+      <oj-button chroming="callToAction" on-oj-action="[[goUpload]]">Go to upload</oj-button>
+    </section>
+  </oj-bind-if>
+
+  <oj-bind-if test="[[hasData()]]">
+    <div>
+      <div class="metric-grid">
+        <oj-bind-for-each data="[[datasets]]">
+          <template>
+            <section class="analytics-card metric-card">
+              <p class="eyebrow"><oj-bind-text value="[[$current.data.label]]"></oj-bind-text></p>
+              <h3><oj-bind-text value="[[$current.data.fileName]]"></oj-bind-text></h3>
+              <div class="metric-row">
+                <div><strong><oj-bind-text value="[[$current.data.summary.rowCount]]"></oj-bind-text></strong><span>Rows</span></div>
+                <div><strong><oj-bind-text value="[[$current.data.summary.columnCount]]"></oj-bind-text></strong><span>Columns</span></div>
+                <div><strong><oj-bind-text value="[[$current.data.summary.stats.length]]"></oj-bind-text></strong><span>Stats</span></div>
+              </div>
+            </section>
+          </template>
+        </oj-bind-for-each>
+      </div>
+
+      <div class="chart-grid">
+        <section class="analytics-card chart-panel wide">
+          <h3>Combined metrics</h3>
+          <oj-chart type="bar" stack="on" data="[[comparisonProvider]]" animation-on-display="auto">
+            <template slot="itemTemplate" data-oj-as="item">
+              <oj-chart-item value="[[item.data.value]]" group-id="[[[item.data.group]]]" series-id="[[item.data.series]]"></oj-chart-item>
+            </template>
+          </oj-chart>
+        </section>
+
+        <section class="analytics-card chart-panel">
+          <h3>3D row volume</h3>
+          <div class="bar3d-stage" aria-label="3D row volume chart">
+            <!-- ko foreach: bars3d -->
+              <div class="bar3d-item">
+                <div class="bar3d" data-bind="style: { height: height + 'px' }">
+                  <span data-bind="text: rows"></span>
+                </div>
+                <strong data-bind="text: label"></strong>
+              </div>
+            <!-- /ko -->
+          </div>
+        </section>
+      </div>
+
+      <section class="analytics-card">
+        <h3>Comparative insights</h3>
+        <ul class="insight-list prominent">
+          <oj-bind-for-each data="[[insights]]">
+            <template><li><oj-bind-text value="[[$current.data]]"></oj-bind-text></li></template>
+          </oj-bind-for-each>
+        </ul>
+      </section>
+    </div>
+  </oj-bind-if>
+</div>

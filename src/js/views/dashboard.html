@@ -1,0 +1,62 @@
+<!--
+ Copyright (c) 2014, 2026, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="analytics-page">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">Dashboard</p>
+      <h2>Generated dataset overview</h2>
+      <p class="page-subtitle">Summary metrics, numeric profiling, and quick insights across all uploaded datasets.</p>
+    </div>
+    <oj-button chroming="outlined" on-oj-action="[[goUpload]]">
+      <span slot="startIcon" class="oj-ux-ico-upload"></span>
+      Replace files
+    </oj-button>
+  </div>
+
+  <oj-bind-if test="[[!hasData()]]">
+    <section class="empty-state">
+      <h3>No datasets loaded</h3>
+      <p>Upload all three datasets or load the included samples to generate this dashboard.</p>
+      <oj-button chroming="callToAction" on-oj-action="[[goUpload]]">Go to upload</oj-button>
+    </section>
+  </oj-bind-if>
+
+  <oj-bind-if test="[[hasData()]]">
+    <div>
+      <div class="metric-grid">
+        <oj-bind-for-each data="[[datasets]]">
+          <template>
+            <section class="analytics-card metric-card">
+              <p class="eyebrow"><oj-bind-text value="[[$current.data.fileName]]"></oj-bind-text></p>
+              <h3><oj-bind-text value="[[$current.data.label]]"></oj-bind-text></h3>
+              <div class="metric-row">
+                <div><strong><oj-bind-text value="[[$current.data.summary.rowCount]]"></oj-bind-text></strong><span>Rows</span></div>
+                <div><strong><oj-bind-text value="[[$current.data.summary.columnCount]]"></oj-bind-text></strong><span>Columns</span></div>
+                <div><strong><oj-bind-text value="[[$current.data.summary.numericColumns.length]]"></oj-bind-text></strong><span>Numeric</span></div>
+              </div>
+              <ul class="insight-list">
+                <oj-bind-for-each data="[[$current.data.summary.insights]]">
+                  <template><li><oj-bind-text value="[[$current.data]]"></oj-bind-text></li></template>
+                </oj-bind-for-each>
+              </ul>
+            </section>
+          </template>
+        </oj-bind-for-each>
+      </div>
+
+      <section class="analytics-card chart-panel">
+        <h3>Rows and columns by dataset</h3>
+        <oj-chart type="bar" data="[[overviewProvider]]" animation-on-display="auto" stack="off">
+          <template slot="itemTemplate" data-oj-as="item">
+            <oj-chart-item value="[[item.data.value]]"
+                           group-id="[[[item.data.group]]]"
+                           series-id="[[item.data.series]]"></oj-chart-item>
+          </template>
+        </oj-chart>
+      </section>
+    </div>
+  </oj-bind-if>
+</div>

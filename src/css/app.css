@@ -1,0 +1,373 @@
+/*
+    Document   : override
+    Created on : <date>
+    Author     : <author>
+    Description:
+        This is where any of your application specific styles should be included
+*/
+
+.send-off-screen {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.demo-oracle-icon {
+  width:137px;
+  height:18px;
+  content:url("images/oracle_logo.svg")
+}
+
+html:not([dir="rtl"]) .demo-oracle-icon {
+  padding-right:4px
+}
+
+html[dir="rtl"] .demo-oracle-icon {
+  padding-left:4px
+}
+
+.demo-oracle-icon:before {
+  display:inline
+}
+
+.demo-appheader-avatar {
+  width:24px;
+  height:24px
+}
+
+.demo-appheader-avatar:before {
+  content:url("images/avatar_24px.png")
+}
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+  .demo-appheader-avatar:before {
+      content:url("images/avatar_24px_2x.png");
+      -webkit-transform:translate(-25%, -25%) scale(0.5);
+      transform:translate(-25%, -25%) scale(0.5)
+  }
+}
+
+.analytics-page {
+  padding: 24px 0 40px;
+}
+
+.page-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.page-heading h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.page-subtitle {
+  max-width: 760px;
+  margin: 8px 0 0;
+  color: var(--oj-core-text-color-secondary);
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: #6f5d10;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.action-row,
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.upload-grid,
+.metric-grid,
+.chart-grid,
+.stats-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.upload-grid,
+.metric-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.metric-grid.compact {
+  grid-template-columns: repeat(3, minmax(160px, 1fr));
+  margin-bottom: 16px;
+}
+
+.chart-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 16px 0;
+}
+
+.stats-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.analytics-card {
+  padding: 18px;
+  border: 1px solid var(--oj-core-divider-color);
+  border-radius: 8px;
+  background: var(--oj-core-bg-color-content);
+  box-shadow: 0 1px 2px rgba(22, 21, 19, .06);
+}
+
+.analytics-card h3 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.upload-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.upload-card-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.upload-card-header p {
+  margin: 4px 0 0;
+  color: var(--oj-core-text-color-secondary);
+}
+
+.card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  color: #1f4f59;
+  background: #d7edf0;
+}
+
+.upload-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.native-upload {
+  display: flex;
+  min-height: 112px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  border: 2px dashed var(--oj-core-divider-color);
+  border-radius: 8px;
+  background: #fbfaf8;
+  cursor: pointer;
+  text-align: center;
+}
+
+.native-upload:hover {
+  border-color: #2f6f73;
+  background: #f1f8f6;
+}
+
+.native-upload input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.status-ready {
+  color: #287d3c;
+}
+
+.status-empty {
+  color: var(--oj-core-text-color-secondary);
+}
+
+.metric-card {
+  min-height: 150px;
+}
+
+.metric-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.metric-row div,
+.stat-card {
+  padding: 12px;
+  border-radius: 8px;
+  background: #f7f4ed;
+}
+
+.metric-row strong,
+.stat-card strong {
+  display: block;
+  font-size: 1.45rem;
+}
+
+.metric-row span,
+.stat-card span {
+  color: var(--oj-core-text-color-secondary);
+  font-size: .8rem;
+}
+
+.insight-list {
+  margin: 14px 0 0;
+  padding-left: 18px;
+  color: var(--oj-core-text-color-secondary);
+}
+
+.insight-list.prominent {
+  color: var(--oj-core-text-color-primary);
+  font-weight: 600;
+}
+
+.chart-panel {
+  min-height: 360px;
+}
+
+.chart-panel.wide {
+  grid-column: 1 / -1;
+}
+
+.chart-panel oj-chart {
+  width: 100%;
+  height: 280px;
+}
+
+.observation {
+  margin: 10px 0 0;
+  color: var(--oj-core-text-color-secondary);
+  font-size: .9rem;
+}
+
+.stat-strip {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) repeat(3, auto);
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #eef5f2;
+}
+
+.table-panel {
+  margin-top: 16px;
+}
+
+.table-toolbar {
+  margin-bottom: 12px;
+}
+
+.table-toolbar oj-input-text {
+  width: min(320px, 100%);
+}
+
+.analytics-table {
+  width: 100%;
+  height: 420px;
+}
+
+.empty-state {
+  padding: 40px;
+  border: 1px dashed var(--oj-core-divider-color);
+  border-radius: 8px;
+  background: #fbfaf8;
+  text-align: center;
+}
+
+.bar3d-stage {
+  min-height: 260px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 34px;
+  padding: 34px 16px 18px;
+  overflow: visible;
+  perspective: 900px;
+}
+
+.bar3d-item {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+
+.bar3d {
+  position: relative;
+  width: 54px;
+  min-height: 22px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 8px;
+  color: #fff;
+  font-weight: 700;
+  background: linear-gradient(180deg, #2f6f73, #184b50);
+  transform: skewY(-8deg);
+  transform-origin: bottom center;
+  box-shadow: 16px 12px 0 #d89b2b;
+}
+
+.bar3d::before,
+.bar3d::after {
+  content: "";
+  position: absolute;
+}
+
+.bar3d::before {
+  top: -12px;
+  left: 6px;
+  width: 54px;
+  height: 12px;
+  background: #71a9a4;
+  transform: skewX(-42deg);
+}
+
+.bar3d::after {
+  right: -16px;
+  top: -6px;
+  width: 16px;
+  height: 100%;
+  background: #b87427;
+  transform: skewY(-36deg);
+}
+
+@media (max-width: 900px) {
+  .page-heading,
+  .action-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .upload-grid,
+  .metric-grid,
+  .metric-grid.compact,
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-strip {
+    grid-template-columns: 1fr;
+  }
+}
